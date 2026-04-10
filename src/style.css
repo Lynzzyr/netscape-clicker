@@ -5,3 +5,60 @@ TEJ4M
 Cookie Clicker
 */
 
+body {
+    margin: 0;
+    background-color: white;
+}
+
+/* type definitions */
+
+@font-face {
+    font-family: "Mozilla Text";
+    font-weight: 200;
+    src: url("../assets/MozillaText-ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Mozilla Text";
+    font-weight: 700;
+    src: url("../assets/MozillaText-Bold.woff2") format("woff2");
+}
+
+/* type classes */
+
+h2 { /* all the bold stuff */
+    font-family: "Mozilla Text", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+
+    margin: 0px;
+
+    color: white;
+}
+
+body { /* all the normal looking text */
+    font-family: "Mozilla Text", sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+/* images */
+
+.logo {
+    width: 24px;
+    height: 24px;
+
+    border: white solid;
+    border-width: 1px;
+}
+
+/* divs */
+
+.title-bar {
+    display: flex;
+    padding: 8px;
+    gap: 8px;
+    align-items: center;
+
+    background-color: darkblue;
+}
