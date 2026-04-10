@@ -31,34 +31,45 @@ h2 { /* all the bold stuff */
     font-weight: 700;
     font-size: 16px;
 
-    margin: 0px;
-
-    color: white;
+    margin: 0;
 }
 
-body { /* all the normal looking text */
+p { /* all the normal looking text */
     font-family: "Mozilla Text", sans-serif;
     font-weight: 200;
     font-size: 14px;
+
+    margin: 0;
 }
 
 /* images */
 
 .logo {
-    width: 24px;
-    height: 24px;
+    border: 1px solid white;
 
-    border: white solid;
-    border-width: 1px;
+    max-height: 100%;
 }
 
 /* divs */
 
 .title-bar {
     display: flex;
+    height: 16px;
     padding: 8px;
     gap: 8px;
     align-items: center;
 
     background-color: darkblue;
+}
+
+.menu-bar {
+    display: flex;
+    height: 20px;
+    padding: 8px;
+    gap: 20px;
+    align-items: center;
+
+    background-color: lightsteelblue;
+
+    border: 1px solid black;
 }
