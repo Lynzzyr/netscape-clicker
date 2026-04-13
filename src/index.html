@@ -30,11 +30,11 @@ Cookie Clicker
     </div>
     <div class="statsbar">
         <div class="statsbar-infobox">
-            <h2>COOKIES</h2><p id="num-cookies">0</p>
+            <h2>COOKIES</h2><p id="stat-cookies">NaN</p>
             <p>|</p> <!-- got lazy -->
-            <h2>COOKIES PER CLICK</h2><p id="num-perclick">0</p>
+            <h2>COOKIES PER CLICK</h2><p id="stat-perclick">NaN</p>
             <p>|</p>
-            <h2>COOKIES PER SECOND</h2><p id="num-persecond">0</p>
+            <h2>COOKIES PER SECOND</h2><p id="stat-persecond">NaN</p>
         </div>
         <img src="../assets/logo.png" alt="logo" class="logo">
     </div>
@@ -48,7 +48,7 @@ Cookie Clicker
             </div>
         </div>
         <div class="gamewindow">
-            <div id="cookie" class="cookie">
+            <div class="cookie" onclick="changeCookiesByClick()">
                 <span class="monospace">
                     # Netscape HTTP Cookie File<br>
                     # https://curl.haxx.se/rfc/cookie_spec.html<br>
