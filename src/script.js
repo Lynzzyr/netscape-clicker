@@ -19,33 +19,54 @@ let elPersecond = document.getElementById("stat-persecond");
 let elUpgradecostPerclick = document.getElementById("upgradecost-perclick");
 let elUpgradecostPersecond = document.getElementById("upgradecost-persecond");
 
+let elUpgradePerclick = document.getElementById("upgrade-perclick");
+let elUpgradePersecond = document.getElementById("upgrade-persecond");
+
 let cookieInterval = constructCookieInterval();
 
 // functions
 
-/** Update number of cookies. */
+/** Updates number of cookies. */
 function updateCookies() {
     elCookies.innerHTML = cookies;
 }
 
-/** Update number of cookies per click. */
+/** Updates number of cookies per click. */
 function updatePerclick() {
     elPerclick.innerHTML = perclick;
 }
 
-/** Update number of cookies per second. */
+/** Updates number of cookies per second. */
 function updatePersecond() {
     elPersecond.innerHTML = persecond;
 }
 
-/** Update upgrade cost for cookies per click. */
+/** Updates upgrade cost for cookies per click. */
 function updateUpgradecostPerclick() {
     elUpgradecostPerclick.innerHTML = upgradecostPerclick;
 }
 
-/** Update upgrade cost for cookies per second. */
+/** Updates upgrade cost for cookies per second. */
 function updateUpgradecostPersecond() {
     elUpgradecostPersecond.innerHTML = upgradecostPersecond;
+}
+
+/** Updates the per click upgrade element. */
+function updateUpgradePerclick() {
+    if (cookies >= upgradecostPerclick) {
+        elUpgradePerclick.style.setProperty("--click-fill", "lightgreen");
+    } else {
+        elUpgradePerclick.style.setProperty("--click-fill", "lightcoral");
+    }
+}
+
+/** Updates the per second upgrade element. */
+function updateUpgradePersecond() {
+    if (cookies >= upgradecostPersecond) {
+        elUpgradePersecond.style.setProperty("--click-fill", "lightgreen");
+    } else {
+        elUpgradePersecond.style.setProperty("--click-fill", "lightcoral");
+    }
 }
 
 /** Adds to current cookie count by per the current number of cookies per click. */
@@ -60,6 +81,16 @@ function changeCookiesBy(amount) {
     updateCookies();
 }
 
+/** Convenience function that creates and returns a new cookie interval based on the current cookies per second. */
+function constructCookieInterval() {
+    return setInterval( // initial setup
+        () => {
+            changeCookiesBy(1);
+        },
+        (1 / persecond) * 1000 // math
+    );
+}
+
 /** Adds 1 to the number of cookies per click only if possible with current number of cookies.*/
 function incrementCookiesPerClick() {
     if (cookies >= upgradecostPerclick) { // cost check
@@ -71,17 +102,9 @@ function incrementCookiesPerClick() {
 
         upgradecostPerclick *= 2; // double cost
         updateUpgradecostPerclick();
-    }
-}
 
-/** Convenience function that creates and returns a new cookie interval based on the current cookies per second. */
-function constructCookieInterval() {
-    return setInterval( // initial setup
-        () => {
-            changeCookiesBy(1);
-        },
-        (1 / persecond) * 1000 // math
-    );
+        updateUpgradePerclick();
+    }
 }
 
 /** Doubles the number of cookies per second only if possible with current number of cookies. */
@@ -99,6 +122,8 @@ function doubleCookieInterval() {
         // reconstruct interval
         clearInterval(cookieInterval);
         cookieInterval = constructCookieInterval();
+
+        updateUpgradePersecond();
     }
 }
 
@@ -123,3 +148,7 @@ updatePersecond();
 
 updateUpgradecostPerclick();
 updateUpgradecostPersecond();
+
+// upgrade button dynamic fill color, stupid workaround by making it update as soon as mouse hovers
+elUpgradePerclick.addEventListener("mouseenter", () => { updateUpgradePerclick(); });
+elUpgradePersecond.addEventListener("mouseenter", () => { updateUpgradePersecond() });

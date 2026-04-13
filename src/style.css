@@ -61,7 +61,7 @@ p { /* all the normal looking text */
 .cookie-text {
     font-family: "Google Sans Code", monospace;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 10px;
 
     color: sienna;
 
@@ -171,9 +171,18 @@ p { /* all the normal looking text */
     align-items: center;
     justify-content: space-between;
 
+    background-color: white;
+
     border: 2px solid black;
 
     user-select: none;
+
+    --click-fill: lightcoral;
+    transition: background-color 100ms;
+}
+
+.upgrade:active {
+    background-color: var(--click-fill);
 }
 
 .gamewindow {
@@ -188,13 +197,24 @@ p { /* all the normal looking text */
 }
 
 .cookie {
-    width: 800px;
+    width: 740px;
 
     padding: 24px;
-    overflow-wrap: break-word;
 
     background-color: white;
 
     border: 2px solid sienna;
     border-radius: 32px;
+
+    transition: width 200ms;
+}
+
+.cookie:active {
+    width: 728px;
+}
+
+.cookie-text-container {
+    width: 720px;
+
+    overflow-wrap: break-word;
 }
