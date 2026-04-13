@@ -163,7 +163,7 @@ p { /* all the normal looking text */
     border: 12px solid lightsteelblue;
 }
 
-.upgrade {
+.improvement {
     height: 32px;
 
     padding: 8px;
@@ -181,7 +181,7 @@ p { /* all the normal looking text */
     transition: background-color 100ms;
 }
 
-.upgrade:active {
+.improvement:active {
     background-color: var(--click-fill);
 }
 
