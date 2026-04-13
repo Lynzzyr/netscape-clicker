@@ -38,6 +38,16 @@ function updatePersecond() {
     elPersecond.innerHTML = persecond;
 }
 
+/** Update upgrade cost for cookies per click. */
+function updateUpgradecostPerclick() {
+    elUpgradecostPerclick.innerHTML = upgradecostPerclick;
+}
+
+/** Update upgrade cost for cookies per second. */
+function updateUpgradecostPersecond() {
+    elUpgradecostPersecond.innerHTML = upgradecostPersecond;
+}
+
 /** Adds to current cookie count by per the current number of cookies per click. */
 function changeCookiesByClick() {
     cookies += perclick;
@@ -58,6 +68,9 @@ function incrementCookiesPerClick() {
 
         cookies -= upgradecostPerclick; // subtract upgrade cost
         updateCookies();
+
+        upgradecostPerclick *= 2; // double cost
+        updateUpgradecostPerclick();
     }
 }
 
@@ -79,6 +92,9 @@ function doubleCookieInterval() {
 
         cookies -= upgradecostPersecond; // subtract upgrade cost
         updateCookies();
+
+        upgradecostPersecond *= 2; // double cost
+        updateUpgradecostPersecond();
 
         // reconstruct interval
         clearInterval(cookieInterval);
@@ -105,5 +121,5 @@ updateCookies();
 updatePerclick();
 updatePersecond();
 
-elUpgradecostPerclick.innerHTML = upgradecostPerclick;
-elUpgradecostPersecond.innerHTML = upgradecostPersecond;
+updateUpgradecostPerclick();
+updateUpgradecostPersecond();
