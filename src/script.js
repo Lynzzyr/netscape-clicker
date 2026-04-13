@@ -5,89 +5,104 @@ TEJ4M
 Cookie Clicker
 */
 
-// globals
-
-let cookies = 0;
-let perclick = 1;
-let persecond = 0.5; // DEV NOTE DONT LET THIS BE 0
-
-let elCookies = document.getElementById("stat-cookies");
-let elPerclick = document.getElementById("stat-perclick");
-let elPersecond = document.getElementById("stat-persecond");
-
-let cookieInterval = constructCookieInterval();
-
 // classes
 
-class Upgrade {
-    constructor(uniqueIdentifier, initialCost) {
-        this.cost = initialCost;
+/** Abstract representation of an object that displays a certain statistic. */
+class Stat {
+    constructor(uniqueIdentifier, initialValue) {
+        this.element = document.getElementById("stat-" + uniqueIdentifier); // enforce naming in HTML
 
-        this.elementMain = document.getElementById("upgrade-" + uniqueIdentifier); // enforce naming in HTML
-        this.elementCost = document.getElementById("upgradecost-" + uniqueIdentifier);
+        this.value = initialValue;
     }
 
-    setCallback(callback) {
+    /** Updates the visual element. */
+    updateElement() {
+        this.element.innerHTML = this.value;
+    }
+
+    /** Adds to or subtracts from the current value. */
+    changeValueBy(amount) {
+        this.value += amount;
+        this.updateElement(); // update as well
+    }
+
+    /** Manually sets the value. */
+    setValueTo(newValue) {
+        this.value = newValue;
+        this.updateElement(); // update as well
+    }
+}
+
+/** Abstract representation of an object that can initiate a certain upgrade. */
+class Upgrade {
+    constructor(uniqueIdentifier, initialCost, callback) {
+        this.elementMain = document.getElementById("upgrade-" + uniqueIdentifier); // enforce naming in HTML
+        this.elementCost = document.getElementById("upgradecost-" + uniqueIdentifier);
+
+        this.cost = initialCost;
+
         this.callback = callback;
     }
 
+    /** Updates the visual element. */
     updateElementMain() {
-        if (cookies >= this.cost) {
+        if (statCookies.value >= this.cost) {
             this.elementMain.style.setProperty("--click-fill", "lightgreen");
         } else {
             this.elementMain.style.setProperty("--click-fill", "lightcoral");
         }
     }
 
+    /** Updates the cost element. */
     updateElementCost() {
         this.elementCost.innerHTML = this.cost;
     }
 
+    /** Initiates the upgrade. */
     initiate() {
-        if (cookies >= this.cost) { // cost check
+        if (statCookies.value >= this.cost) { // cost check
             this.callback();
+
+            // other maintenance stuff
+            statCookies.changeValueBy(-this.cost); // subtract upgrade cost
+
+            this.cost *= 2; // double cost
+            this.updateElementCost();
+
+            this.updateElementMain();
         }
     }
 }
 
 // functions
 
-/** Updates number of cookies. */
-function updateCookies() {
-    elCookies.innerHTML = cookies;
-}
-
-/** Updates number of cookies per click. */
-function updatePerclick() {
-    elPerclick.innerHTML = perclick;
-}
-
-/** Updates number of cookies per second. */
-function updatePersecond() {
-    elPersecond.innerHTML = persecond;
-}
-
-/** Adds to current cookie count by per the current number of cookies per click. */
-function changeCookiesByClick() {
-    cookies += perclick;
-    updateCookies();
-}
-
-/** Adds to or subtracts from current cookie count. Subtract by setting `amount` to a negative number. */
-function changeCookiesBy(amount) {
-    cookies += amount;
-    updateCookies();
-}
-
 /** Convenience function that creates and returns a new cookie interval based on the current cookies per second. */
 function constructCookieInterval() {
     return setInterval( // initial setup
         () => {
-            changeCookiesBy(1);
+            statCookies.changeValueBy(1);
         },
-        (1 / persecond) * 1000 // math
+        (1 / statPersecond.value) * 1000 // math
     );
 }
+
+// create objects
+
+const statCookies = new Stat("cookies", 0);
+const statPerclick = new Stat("perclick", 1);
+const statPersecond = new Stat("persecond", 0.5); // DEV NOTE DONT LET THIS BE 0
+
+let cookieInterval = constructCookieInterval();
+
+const upgradePerclick = new Upgrade("perclick", 50, () => {
+    statPerclick.changeValueBy(1);
+});
+const upgradePersecond = new Upgrade("persecond", 200, () => {
+    statPersecond.setValueTo(statPersecond.value * 2);
+
+    clearInterval(cookieInterval); // reconstruct
+    cookieInterval = constructCookieInterval();
+});
 
 // page setup
 
@@ -103,48 +118,10 @@ for (const item of document.getElementsByClassName("menu-bar-item")) {
     });
 }
 
-// create improvement objects
-const upgradePerclick = new Upgrade("perclick", 50);
-upgradePerclick.setCallback(() => {
-    // increment cookies per click
-    perclick++;
-    updatePerclick();
-
-    // subtract upgrade cost
-    cookies -= upgradePerclick.cost;
-    updateCookies();
-
-    // double cost
-    upgradePerclick.cost *= 2;
-    upgradePerclick.updateElementCost();
-
-    upgradePerclick.updateElementMain();
-});
-const upgradePersecond = new Upgrade("persecond", 200);
-upgradePersecond.setCallback(() => {
-    // double cookies per second
-    persecond *= 2;
-    updatePersecond();
-
-    // subtract upgrade cost
-    cookies -= upgradePersecond.cost;
-    updateCookies();
-
-    // double cost
-    upgradePersecond.cost *= 2;
-    upgradePersecond.updateElementCost();
-
-    upgradePersecond.updateElementMain();
-
-    // reconstruct interval
-    clearInterval(cookieInterval);
-    cookieInterval = constructCookieInterval();
-})
-
-// stats bar start values
-updateCookies();
-updatePerclick();
-updatePersecond();
+// start values
+statCookies.updateElement();
+statPerclick.updateElement();
+statPersecond.updateElement();
 
 upgradePerclick.updateElementCost();
 upgradePersecond.updateElementCost();
