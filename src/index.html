@@ -30,11 +30,11 @@ Cookie Clicker
     </div>
     <div class="statsbar">
         <div class="statsbar-infobox">
-            <h2>COOKIES</h2><p id="num-cookies">NaN</p>
+            <h2>COOKIES</h2><p id="num-cookies">0</p>
             <p>|</p> <!-- got lazy -->
-            <h2>COOKIES PER CLICK</h2><p id="num-perclick">NaN</p>
+            <h2>COOKIES PER CLICK</h2><p id="num-perclick">0</p>
             <p>|</p>
-            <h2>COOKIES PER SECOND</h2><p id="num-persecond">NaN</p>
+            <h2>COOKIES PER SECOND</h2><p id="num-persecond">0</p>
         </div>
         <img src="../assets/logo.png" alt="logo" class="logo">
     </div>
@@ -48,7 +48,28 @@ Cookie Clicker
             </div>
         </div>
         <div class="gamewindow">
+            <div id="cookie" class="cookie">
+                <span class="monospace">
+                    # Netscape HTTP Cookie File<br>
+                    # https://curl.haxx.se/rfc/cookie_spec.html<br>
+                    # This is a generated file! Do not edit.<br>
 
+                    .github.com	TRUE	/	TRUE	1795269077	_octo	JK6.7.987654321.1767736977<br>
+                    .github.com	TRUE	/	TRUE	1802726202	logged_in	naur<br>
+                    github.com	FALSE	/	TRUE	1807482947	_device_id	4c697374656e62657267206973207265616c<br>
+                    github.com	FALSE	/	TRUE	1778962602	saved_user_sessions	69676769%3AL_J-V2hhdGNoYSBsb29raW5nIGF0IHRoZXJlIG1hbj8=_j6-7<br>
+                    github.com	FALSE	/	TRUE	1777156547	user_session	L_J-V2hhdGNoYSBsb29raW5nIGF0IHRoZXJlIG1hbj8=_j6-7<br>
+                    github.com	FALSE	/	TRUE	1777156547	__Host-user_session_same_site	L_J-V2hhdGNoYSBsb29raW5nIGF0IHRoZXJlIG1hbj8=_j6-7<br>
+                    .github.com	TRUE	/	TRUE	1802726202	dotcom_user	Gary<br>
+                    github.com	FALSE	/	TRUE	0	tz	Europe%2FLurenberg<br>
+                    .github.com	TRUE	/	TRUE	0	color_mode	%7B%22color_mode%22%3A%22dark%22%2C%22light_theme%22%3A%7B%22name%22%3A%22light%22%2C%22color_mode%22%3A%22light%22%7D%2C%22dark_theme%22%3A%7B%22name%22%3A%22dark%22%2C%22color_mode%22%3A%22dark%22%7D%7D<br>
+                    github.com	FALSE	/	TRUE	0	last_write_ms	1776047486773<br>
+                    .github.com	TRUE	/	TRUE	0	cpu_bucket	xlg<br>
+                    .github.com	TRUE	/	TRUE	0	preferred_color_mode	dark<br>
+                    .github.com	TRUE	/	TRUE	0	tz	Europe%2FLurenberg<br>
+                    github.com	FALSE	/	TRUE	0	_gh_sess	Q29tZSBvbiwgZGlkIHlvdSByZWFsbHkgcmVhbGx5IHRoaW5rIHRoYXQgSSB3b3VsZCBzaW1wbHkgZXhwb3NlIG15IEdpdEh1YiBzZXNzaW9uIGNyZWRlbnRpYWxzIGhlcmUKSW4gZmFjdCwgd2h5IGFyZSB5b3UgZXZlbiBjaGVja2luZyBpZiB0aGlzIGV4dHJlbWVseSBsb25nIHN0cmluZyBvZiBiYXNlNjQgaG9sZHMgYW55IG1lYW5pbmcgYXQgYWxsCkkgbWVhbiBJIGRvbid0IGRpc2NyZWRpdCB5b3UgZm9yIGJlaW5nIHZlcnkgaW5xdWlzaXRpdmUgYW5kIHRoYXQgaXMgYSB2ZXJ5IGdvb2QgdHJhaXQgdG8gaGF2ZQpCdXQgY29tZSBvbiB5b3Ugc2hvdWxkIGhhdmUga25vd24gYmV0dGVyIHRoYW4gZG8gdGhpbmsgdGhpcyBjb3VsZCBtZWFuIGFueXRoaW5nIHVzZWZ1bCwgYW5kIHdoZW4gSSBzYXkgYW55dGhpbmcgSSBtZWFuIEFOWVRISU5HCk9rIEkgZG9uJ3Qga25vdyB3aGF0IHRvIHdyaXRlIGhlcmUgYW55bW9yZSBzbyBoZXJlIGlzIHNvbWUgbG9yZW0gaXBzdW0gZm9yIHlvdSBiZWNhdXNlIHdoeSB0aGUgaGVsbCBub3QKTG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdCwgc2VkIGRvIGVpdXNtb2QgdGVtcG9yIGluY2lkaWR1bnQgdXQgbGFib3JlIGV0IGRvbG9yZSBtYWduYSBhbGlxdWEuIFV0IGVuaW0gYWQgbWluaW0gdmVuaWFtLCBxdWlzIG5vc3RydWQgZXhlcmNpdGF0aW9uIHVsbGFtY28gbGFib3JpcyBuaXNpIHV0IGFsaXF1aXAgZXggZWEgY29tbW9kbyBjb25zZXF1YXQuIER1aXMgYXV0ZSBpcnVyZSBkb2xvciBpbiByZXByZWhlbmRlcml0IGluIHZvbHVwdGF0ZSB2ZWxpdCBlc3NlIGNpbGx1bSBkb2xvcmUgZXUgZnVnaWF0IG51bGxhIHBhcmlhdHVyLg==<br>
+                </span>
+            </div>
         </div>
     </div>
 </body>

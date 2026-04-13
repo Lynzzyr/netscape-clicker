@@ -27,6 +27,11 @@ html, body {
     src: url("../assets/MozillaText-Bold.woff2") format("woff2");
 }
 
+@font-face {
+    font-family: "Google Sans Code";
+    src: url("../assets/GoogleSansCode-VariableFont_wght.ttf") format("truetype");
+}
+
 /* type classes */
 
 h2 { /* all the bold stuff */
@@ -43,6 +48,12 @@ p { /* all the normal looking text */
     font-size: 14px;
 
     margin: 0;
+}
+
+.monospace {
+    font-family: "Google Sans Code", monospace;
+    font-weight: 200;
+    font-size: 12px;
 }
 
 /* images */
@@ -138,8 +149,21 @@ p { /* all the normal looking text */
 
 .gamewindow {
     flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: white;
 
     border-left: 1px solid black;
+}
+
+.cookie {
+    width: 800px;
+
+    padding: 24px;
+    overflow-wrap: break-word;
+
+    border: 2px solid black;
+    border-radius: 32px;
 }
