@@ -1,7 +1,7 @@
 /*
 Brandon Namgoong
 TEJ4M
-2026-04-##
+2026-04-13
 Cookie Clicker
 */
 
@@ -34,6 +34,14 @@ html, body {
 
 /* type classes */
 
+h1 { /* literally just for upgrades title */
+    font-family: "Mozilla Text", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+
+    margin: 0;
+}
+
 h2 { /* all the bold stuff */
     font-family: "Mozilla Text", sans-serif;
     font-weight: 700;
@@ -52,8 +60,10 @@ p { /* all the normal looking text */
 
 .cookie-text {
     font-family: "Google Sans Code", monospace;
-    font-weight: 200;
+    font-weight: 400;
     font-size: 12px;
+
+    color: sienna;
 
     user-select: none;
 }
@@ -142,11 +152,28 @@ p { /* all the normal looking text */
 
 .sidebar-content {
     flex: 1;
-    padding: 8px;
+
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
     background-color: white;
 
     border: 12px solid lightsteelblue;
+}
+
+.upgrade {
+    height: 32px;
+
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 2px solid black;
+
+    user-select: none;
 }
 
 .gamewindow {
@@ -168,6 +195,6 @@ p { /* all the normal looking text */
 
     background-color: white;
 
-    border: 2px solid black;
+    border: 2px solid sienna;
     border-radius: 32px;
 }

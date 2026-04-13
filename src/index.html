@@ -1,7 +1,7 @@
 <!--
 Brandon Namgoong
 TEJ4M
-2026-04-##
+2026-04-13
 Cookie Clicker
 -->
 
@@ -44,7 +44,15 @@ Cookie Clicker
                 <h2 style="color: white">My Sidebar</h2>
             </div>
             <div class="sidebar-content">
-
+                <h1>Upgrades</h1>
+                <div class="upgrade" onclick="incrementCookiesPerClick()">
+                    <h2>COOKIES PER CLICK +1</h2>
+                    <p><span id="upgradecost-perclick">NaN</span> cookies</p>
+                </div>
+                <div class="upgrade" onclick="doubleCookieInterval()">
+                    <h2>COOKIES PER SECOND ×2</h2>
+                    <p><span id="upgradecost-persecond">NaN</span> cookies</p>
+                </div>
             </div>
         </div>
         <div class="gamewindow">
